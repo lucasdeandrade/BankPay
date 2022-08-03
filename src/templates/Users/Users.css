@@ -1,0 +1,41 @@
+.body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: scroll; 
+    opacity: 0;
+    animation: fade-in 0.5s forwards;
+    padding: 20px;
+    overflow: hidden;
+}
+
+@keyframes fade-in {
+    0%{}
+    100%{
+        opacity: 1;
+    }
+}
+
+thead{
+    background-color: var(--primary);
+    color: white;
+}
+
+/* MODAL */
+
+
+.modal{
+    background-color: white;
+    display: none;
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    left: 200px;
+    top: 40px;
+    color: black;
+}
+
+.show{
+    display: block !important;
+}

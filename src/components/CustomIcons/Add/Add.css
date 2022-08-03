@@ -1,0 +1,12 @@
+.add-icon{
+    color: var(--primary);
+
+    border-radius: 50%;
+    transition-duration: 0.5s;
+}
+.add-icon:hover{
+    transform: rotate(90deg);
+    background-color: var(--secondary);
+
+    color: white;
+}

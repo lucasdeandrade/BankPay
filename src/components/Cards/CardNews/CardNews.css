@@ -1,0 +1,35 @@
+h5{ 
+    font-weight: 500 !important;
+}
+
+.date-time{
+    opacity: 0.5;
+    font-size: 0.8em;
+}
+
+.news-body{
+    overflow: scroll;
+    height: 100%;
+}
+
+.news-body::-webkit-scrollbar {
+    width: 12px;       
+  }
+  
+.news-body::-webkit-scrollbar-track {
+background: transparent;
+}   
+
+.news-body::-webkit-scrollbar-thumb{
+    background-color:white;    /* color of the scroll thumb */
+    border-radius: 20px; 
+    transition-duration: 2s;
+    
+}
+
+.news-body:hover::-webkit-scrollbar-thumb{ 
+    background-color: rgba(0, 0, 0, 0.2);    /* color of the scroll thumb */
+    border-radius: 20px;  
+    border: 3px solid white;   /* roundness of the scroll thumb */ /* creates padding around scroll thumb */
+}
+

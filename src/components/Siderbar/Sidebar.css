@@ -1,0 +1,54 @@
+.sideBar{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 11em;
+    background-color: #434343;
+    transition-duration: 0.3s;
+}   
+.navItem{
+    text-align: start;
+    color: white;
+    font-weight: 300;
+    padding: 9px;
+    padding-left: 20px;
+    font-size: 14px;
+    border-bottom: rgba(255, 255, 255, 0.1) 2px inset;
+}
+.link{
+    width: 100%;
+    text-decoration: none;
+}
+
+.accordion-button{
+    padding: 9px;
+    padding-left: 20px;
+    background-color: #434343;
+    color: white;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.accordion-button:not(.collapsed){
+    color: var(--secondary);
+    background-color: #434343;
+    border: 0px;
+}
+
+.accordion-button:focus {
+    box-shadow: none !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: invert(100%) contrast(100%);
+    transform: rotate(-180deg) scale(0.7);
+}
+.accordion-button::after{
+    filter: invert(100%) contrast(100%);
+    transform: scale(0.7);
+}
+
+.accordion-item{
+    background-color: transparent !important;
+}

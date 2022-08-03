@@ -1,0 +1,36 @@
+.body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: scroll; 
+    opacity: 0;
+    animation: fade-in 0.5s forwards;
+    padding: 20px;
+    overflow: hidden;
+}
+#mensagem {
+    transition: all 0.52s;
+    background: #FFF;
+    border: #777 solid 1px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,.52);
+    position: fixed;
+    top: -150px;
+    width: 50%;
+    padding: 25px 0;
+    text-align: center;
+    left: 25%;
+    opacity: 0;
+  }
+  
+  #mensagem.ver {
+    top: 75px;
+    opacity: 1;
+  }
+
+@keyframes fade-in {
+    0%{}
+    100%{
+        opacity: 1;
+    }
+}

@@ -1,0 +1,48 @@
+.status-card{
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 20%);
+    text-decoration: none;
+    transition-duration: 0.3s;
+}
+.card-footer{
+    border-radius: 0 0 20px 20px !important;
+    background-image: linear-gradient(red, blue, );
+    transition-duration: 0.3s;
+}
+.statusNumber{
+    font-size: 30px;
+}
+
+.icon{
+    align-self: center;
+    transform: scale(1.7);
+}
+
+a{
+    text-decoration: none;
+}
+
+.status-card:hover{
+    transform: scale(1.05);
+}
+a:hover .arrow{
+    animation: pulse 1s infinite;
+}
+
+
+@keyframes pulse {
+    0%{
+        padding-right: 0px;
+    }
+    50%{
+        padding-right: 5px;
+    }
+    100%{
+        padding-right: 0px;
+    }
+}
+
+.card-news{
+    overflow: hidden;
+    max-height: 60%;
+}
