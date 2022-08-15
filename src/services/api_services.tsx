@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { IUser, OcurrenceRecord } from '../interfaces/IUser';
-
 import api from './api'
+
 
   function GetApi(route: String){
 
@@ -20,23 +18,39 @@ import api from './api'
     return resp;
   } 
 
-  export function CreateUserPost(name: String, phone: String ){
-  
-    api.post("/v1/Users", {"name": name,"phone": phone});
-
-    alert("success")
+  export function CreateUserPost(name: String, cpf: String, phone: String ){
+    api.post("/v1/Users", {"name": name,"cpf": cpf, "phone": phone});
+    alert("success");
 
   }
   
-  
-
   export function getUsers(){
-    
     return GetApi('Users');
   }
 
   export function getUser(id : any){
-    return GetApi('Users/'+id);
+    return GetApi('Users/' + id);
+  }
+
+  export function getAccounts(){
+    return GetApi('Accounts');
+  }
+
+  export function getTransactions(){
+    return GetApi('OcurrencesRecord');
+  }
+
+  export  function addTransaction(numberAccount : string, amount: number, type: string){
+
+    console.log(type);
+
+    api
+    .put(`/v1/Accounts/${numberAccount}/${type == 'Credito'? 'AddCredit': 'Withdraw'}` , {"amount": amount})
+    .then()
+    .catch((err) => {
+      alert("ops! ocorreu um erro" + err);
+    });
+    alert('Criado com sucesso')
   }
 
   export async function deleteUser(e : any){
@@ -46,13 +60,7 @@ import api from './api'
           .catch((err) => {
             console.error("ops! ocorreu um erro" + err);
           });
-    return window.location.href = "/users"
-  } 
-
-  export function getAccounts(){
-    return GetApi('Accounts');
+    return window.location.href = "/users";
   }
 
-
-
-
+  

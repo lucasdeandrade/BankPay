@@ -42,8 +42,7 @@ const Accounts: React.FunctionComponent<IAccountsProps> = (props) => {
             <div className='card-body'>
               <div className='card-title d-flex justify-content-between text-start fs-5'>
                 Contas
-                <AddIcon route={'/users/create'}></AddIcon>
-              </div>
+                </div>
               <hr/>
               <table className="table table-striped rounded-3 overflow-hidden">
                 <thead>

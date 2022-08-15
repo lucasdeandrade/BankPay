@@ -1,0 +1,20 @@
+.add-icon{
+    cursor: pointer;
+}
+
+.modalCreate{
+    position: absolute;
+    z-index: 999;
+    transition-duration: 0.3s;
+    align-self: center;
+    top: -8%;
+    right: -12%;
+    transform: scale(0);
+
+}
+
+.modalCreate.able{
+    transform: scale(1);
+    top: 30%;
+    right: 25%;
+}

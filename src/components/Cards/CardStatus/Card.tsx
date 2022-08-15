@@ -11,6 +11,7 @@ interface ICardStatusProps {
   color?: any;
   linearGradient? : Array<String>;
   data? : String;
+  icone? : String;
 }
 
 const CardStatus: React.FunctionComponent<ICardStatusProps> = (props) => {
@@ -28,7 +29,7 @@ const CardStatus: React.FunctionComponent<ICardStatusProps> = (props) => {
                    <div className="statusDesc text-muted text-start">{props.subtitle}</div>
                  </div>   
                  <span className="col icon material-symbols-outlined" style={{color: props.color}}>
-                   group
+                   {props.icone}
                  </span>
                </div> 
              </div>

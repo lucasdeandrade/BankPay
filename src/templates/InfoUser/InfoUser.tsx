@@ -26,8 +26,6 @@ export function RowsInfo (props: IRowsInfo) {
   )
 }
 
-
-
 export interface IInfoUserProps {
 
 }
@@ -37,13 +35,15 @@ export function InfoUser (props: IInfoUserProps) {
   const [user, setUser] = useState<IUser>();
   
   var url = window.location.href[window.location.href.length -1]
-  api
+
+  if(user == null){
+     api
       .get("/v1/Users/" + url)
       .then((response) => ((setUser(response.data))))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
       });
-  
+  }
 
 
   function OcurrenceGet(){
@@ -61,9 +61,12 @@ export function InfoUser (props: IInfoUserProps) {
   }
 
   const ocurrences : Array<ReactElement> = [];
-  
+  var date: Date;
 
   OcurrenceGet().forEach((o: OcurrenceRecord) => {
+
+    date = new Date(o.createdAt);
+
     ocurrences.push(
       <div className='card col-4 m-2 px-3 py-2 shadow'>
         <div className='card-title row justify-content-between '>
@@ -72,7 +75,7 @@ export function InfoUser (props: IInfoUserProps) {
           : 
             <div className='col text-start text-danger'>Debito</div>
           }
-          <div className='col-9 text-end date-ocurrence'>{o.createdAt.toLocaleString()}</div>
+          <div className='col-9 text-end date-ocurrence'>{date.toLocaleString()}</div>
         </div>
         <div className='row'> 
             <RowsInfo text={'Valor'} data={o.amount.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}/>
@@ -99,13 +102,13 @@ export function InfoUser (props: IInfoUserProps) {
             <div className='col-5 mx-4 p-3'>
               <div className='col-12 text-start pt-1'><h5>Cliente</h5><hr className='mb-2'/></div>
                 <RowsInfo text={'Nome'} data={user?.name}/>
+                <RowsInfo text={'Cpf'} data={user?.cpf}/>
                 <RowsInfo text={'Telefone'} data={user?.phone}/>
             </div>
             <div className='col-5 mx-4 p-3'>
               <div className='col-12 text-start pt-1'><h5>Conta</h5><hr  className='mb-2'/></div>
                 <RowsInfo text={'Numero'} data={user?.account.numberAccount}/>
                 <RowsInfo text={'Saldo'} data={user?.account.balance.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}/>
-                <RowsInfo text={'Data abertura'} datatime={user?.account.openingAt}/>
             </div>
           </div>
           <h3 className='py-3'>Movimentações</h3>

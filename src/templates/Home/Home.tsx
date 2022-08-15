@@ -3,25 +3,75 @@ import CardStatus from '../../components/Cards/CardStatus/Card';
 import colors from '../../components/ThemeColors/ThemeColors';
 import CardNews from '../../components/Cards/CardNews/CardNews';
 import * as React from 'react';
-import  {getUsers} from '../../services/api_services';
-import StackedColumn from '../../components/Highcharts/StackedColumn/StackedColumn';
+import  {getTransactions, getUsers} from '../../services/api_services';
+import { OcurrenceRecord } from '../../interfaces';
+import {Chart} from 'react-google-charts';
 
 interface IHomeProps {
 }
 
 const Home: React.FunctionComponent<IHomeProps> = (props) => {
+
+  const options = {
+    pieHole: 0.6,
+    is3D: false,
+    colors: [colors.green, colors.red],
+    pieSliceText: "none",
+    legend: {position: 'bottom', textStyle: {color: 'gray', fontSize: 16}},
+  };
     
   const totalClients = getUsers().length.toString();
+  const transiction =  getTransactions().length.toString();
+
+  var totalCredits : number = 0;
+  var totalDedits : number = 0;
+  
+  if(totalCredits == 0){
+    getTransactions().forEach((e : OcurrenceRecord) => {
+      if(e.typeRecord == 1){
+        totalCredits += e.amount;
+      }
+      else{
+        totalDedits += e.amount;
+      }
+    });
+  }
+
+  const data = [
+    ["Task", "Hours per Day"],
+    ["Credito", totalCredits],
+    ["Debito", totalDedits]
+  ];
 
   return <div className='body-home px-5' data-spy='scroll'>
-           <div className='status row'>
-             <CardStatus data={totalClients} color={colors.orange} linearGradient={[`${colors.orange} 50%`, `${colors.light_orange}`]} subtitle={'Clientes'} link={'/users'}/> 
-             <CardStatus linearGradient={[`${colors.red} 50%`, `${colors.light_red}`]} color={colors.red} subtitle={'Movimentações'} link={'/users'}></CardStatus>
-             <CardStatus data={'R$' + 0}  linearGradient={[`${colors.green} 50%`, `${colors.light_green}`]} color={colors.green} subtitle={'Creditos'} link={'/users'}></CardStatus>
-             <CardStatus data={'R$' + 0}  linearGradient={[`${colors.blue} `, `${colors.light_blue}`]} color={colors.blue} subtitle={'Débitos'} link={'/users'}></CardStatus>
-           </div>
-           <CardNews></CardNews>
-           <StackedColumn></StackedColumn>
+          <div className='status row'>
+            <CardStatus icone={'group'} data={totalClients} color={colors.orange} linearGradient={[`${colors.orange} 50%`, `${colors.light_orange}`]} subtitle={'Clientes'} link={'/users'}/> 
+            <CardStatus icone={'receipt_long'} data={transiction} linearGradient={[`${colors.blue} `, `${colors.light_blue}`]} color={colors.blue} subtitle={'Transações'} link={'/transactions'}></CardStatus>
+            <CardStatus icone={'payments'} data={'R$' + totalCredits}  linearGradient={[`${colors.green} 50%`, `${colors.light_green}`]} color={colors.green} subtitle={'Creditos'} link={'/users'}></CardStatus>
+            <CardStatus icone={'payments'} data={'R$' + totalDedits}  linearGradient={[`${colors.red} 50%`, `${colors.light_red}`]} color={colors.red} subtitle={'Débitos'} link={'/users'}></CardStatus>
+          </div>
+          <div className="row">
+            <CardNews></CardNews>
+            <div className="card col-4 py-4 m-2">
+              <div className="titleChart card-title text-start px-4">
+                <h5>Transações</h5>
+                <hr className='pb-0' />
+              </div>
+              {(totalCredits == 0 || totalDedits == 0)? 
+                <h4 className='text-secondary pt-5 mt-2'>Não existe transações</h4>
+                :
+                <Chart
+                    chartType="PieChart"
+                    data={data}
+                    options={options}
+                    width={"100%"}
+                    height={"350px"}
+                />
+            }
+                
+            </div>
+          </div>
+          
          </div>
 };
 
