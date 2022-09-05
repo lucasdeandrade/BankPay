@@ -18,7 +18,7 @@ const CardNews: React.FunctionComponent<ICardNewsProps> = (props) => {
       elementUsers.push( <div className='card mx-4 p-1 mt-2 '>
                           <div className='card-body row text-start p-0 '>
                             <div className='col-9 py-2 px-4'>
-                              <strong > Cadastro Novo usuario,</strong>
+                              <strong > Cadastro Novo usuario ,</strong>
                               <div>Nome: {e.name} | Telefone: {e.phone} | Conta: {e.account.numberAccount} </div>
                             </div>
                             <div className='col-3 py-1 px-4 text-end align-items-stretch'>

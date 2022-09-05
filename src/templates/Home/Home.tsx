@@ -8,6 +8,8 @@ import { OcurrenceRecord } from '../../interfaces';
 import {Chart} from 'react-google-charts';
 
 interface IHomeProps {
+  totalCredits? : number;
+  totalDedits? : number;
 }
 
 const Home: React.FunctionComponent<IHomeProps> = (props) => {
@@ -19,12 +21,13 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
     pieSliceText: "none",
     legend: {position: 'bottom', textStyle: {color: 'gray', fontSize: 16}},
   };
-    
+  
+  var totalCredits : number = 0;
+  var totalDedits : number = 0;
   const totalClients = getUsers().length.toString();
   const transiction =  getTransactions().length.toString();
 
-  var totalCredits : number = 0;
-  var totalDedits : number = 0;
+  
   
   if(totalCredits == 0){
     getTransactions().forEach((e : OcurrenceRecord) => {
@@ -40,15 +43,15 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
   const data = [
     ["Task", "Hours per Day"],
     ["Credito", totalCredits],
-    ["Debito", totalDedits]
+    ["Debito", totalDedits + 1]
   ];
 
   return <div className='body-home px-5' data-spy='scroll'>
           <div className='status row'>
             <CardStatus icone={'group'} data={totalClients} color={colors.orange} linearGradient={[`${colors.orange} 50%`, `${colors.light_orange}`]} subtitle={'Clientes'} link={'/users'}/> 
             <CardStatus icone={'receipt_long'} data={transiction} linearGradient={[`${colors.blue} `, `${colors.light_blue}`]} color={colors.blue} subtitle={'Transações'} link={'/transactions'}></CardStatus>
-            <CardStatus icone={'payments'} data={'R$' + totalCredits}  linearGradient={[`${colors.green} 50%`, `${colors.light_green}`]} color={colors.green} subtitle={'Creditos'} link={'/users'}></CardStatus>
-            <CardStatus icone={'payments'} data={'R$' + totalDedits}  linearGradient={[`${colors.red} 50%`, `${colors.light_red}`]} color={colors.red} subtitle={'Débitos'} link={'/users'}></CardStatus>
+            <CardStatus icone={'payments'} data={'R$' + totalCredits}  linearGradient={[`${colors.green} 50%`, `${colors.light_green}`]} color={colors.green} subtitle={'Creditos'} link={'/transactions'}></CardStatus>
+            <CardStatus icone={'payments'} data={'R$' + totalDedits}  linearGradient={[`${colors.red} 50%`, `${colors.light_red}`]} color={colors.red} subtitle={'Débitos'} link={'/transactions'}></CardStatus>
           </div>
           <div className="row">
             <CardNews></CardNews>
