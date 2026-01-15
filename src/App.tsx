@@ -12,7 +12,6 @@ import Transactions from './templates/Transactions/Transactions';
 import Accounts from './templates/Accounts/Accounts';
 
 export default function App() {
-    
   return (
     <div className="App">
         <Header/>

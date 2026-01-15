@@ -19,9 +19,8 @@ import api from './api'
   } 
 
   export function CreateUserPost(name: String, cpf: String, phone: String ){
-    api.post("/v1/Users", {"name": name,"cpf": cpf, "phone": phone});
-    alert("success");
-
+     api.post("/v1/Users", {"name": name,"cpf": cpf, "phone": phone});
+    return alert(`Usuario ${name} criado com sucesso!`)
   }
   
   export function getUsers(){
@@ -40,7 +39,7 @@ import api from './api'
     return GetApi('OcurrencesRecord');
   }
 
-  export  function addTransaction(numberAccount : string, amount: number, type: string){
+  export function addTransaction(numberAccount : string, amount: number, type: string){
 
     console.log(type);
 

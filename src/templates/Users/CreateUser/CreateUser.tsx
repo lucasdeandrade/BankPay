@@ -53,7 +53,7 @@ const CreateUser: React.FunctionComponent<ICreateUserProps> = (props) => {
                             <hr className='mt-4'/>
                         </div>
                         <div className="col-12 d-flex justify-content-end">
-                            <button onClick={()=>{ CreateUserPost(inputName, inputCpf, inputPhone)}} className={`btn btn-secondary ${
+                            <button onClick={async ()=>{await CreateUserPost(inputName, inputCpf, inputPhone)}} className={`btn btn-secondary ${
                                 (valName && valPhone && valCpf)? 'able' : 'disabled'
                             }`} >Criar</button>
                         </div>
