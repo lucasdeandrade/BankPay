@@ -57,11 +57,11 @@ const Home: React.FunctionComponent<IHomeProps> = (props) => {
             <CardNews></CardNews>
             <div className="card col-4 py-4 m-2">
               <div className="titleChart card-title text-start px-4">
-                <h5>Transações</h5>
+                <h5>Comparativos</h5>
                 <hr className='pb-0' />
               </div>
               {(totalCredits == 0 || totalDedits == 0)? 
-                <h4 className='text-secondary pt-5 mt-2'>Não existe transações</h4>
+                <h5 className='text-secondary pt-5 mt-2'>Não existe comparativos</h5>
                 :
                 <Chart
                     chartType="PieChart"

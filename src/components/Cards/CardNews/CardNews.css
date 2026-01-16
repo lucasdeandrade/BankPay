@@ -1,17 +1,14 @@
 h5{ 
     font-weight: 500 !important;
 }
-
 .date-time{
     opacity: 0.5;
     font-size: 0.8em;
 }
-
 .news-body{
     overflow: scroll;
     height: 100%;
 }
-
 .news-body::-webkit-scrollbar {
     width: 12px;       
   }
